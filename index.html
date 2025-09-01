@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Yash Sankhla, an SAP HCM & SuccessFactors Consultant based in Jaipur, India.">
+    <meta name="description" content="Portfolio of Yash Sankhla, an SAP HCM & SuccessFactors Consultant.">
     <title>Yash Sankhla | SAP Consultant Portfolio</title>
     <style>
-        /* --- Google Font Import --- */
-        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+        /* --- Font Imports --- */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
 
-        /* --- Global Styles & Resets --- */
+        /* --- Global Styles & Resets (Light Theme) --- */
         :root {
-            --primary-color: #005A9C; /* A professional blue */
-            --secondary-color: #003B65;
-            --background-color: #f4f7f6;
-            --text-color: #333333;
-            --light-gray: #e9ecef;
-            --white: #ffffff;
+            --primary-color: #007bff; /* Professional Blue */
+            --secondary-color: #ffffff;
+            --background-color: #ffffff; /* White Background */
+            --text-color: #495057; /* Dark Grey Text */
+            --heading-color: #212529; /* Black Heading */
+            --border-color: rgba(0, 0, 0, 0.1);
+            --content-bg: rgba(248, 249, 250, 0.85); /* Slightly off-white for sections */
         }
 
         * {
@@ -30,10 +31,11 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.8;
             background-color: var(--background-color);
             color: var(--text-color);
+            overflow-x: hidden;
         }
 
         .container {
@@ -41,395 +43,571 @@
             margin: auto;
             overflow: hidden;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
-
+        
         h1, h2, h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-weight: 700;
-            color: var(--secondary-color);
+            color: var(--heading-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        section {
-            padding: 4rem 0;
-        }
-
-        /* --- Navigation Bar --- */
-        .navbar {
-            background: var(--white);
-            color: var(--text-color);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .navbar ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover {
-            color: var(--primary-color);
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), #58a6ff);
+            margin: 1rem auto 0;
         }
         
+        section {
+            position: relative;
+            padding: 5rem 0;
+            overflow: hidden; /* Hide overflow from circuit patterns */
+        }
+        
+        /* --- Particle Canvas Background --- */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        /* --- Circuit Pattern Background --- */
+        .circuit-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 50 H20 M20 30 V70 M20 50 H40 M40 30 V70 M40 50 H60 M60 30 V70 M60 50 H80 M80 30 V70 M80 50 H100 M50 0 V20 M30 20 V0 M70 20 V0 M50 20 V40 M30 40 V20 M70 40 V20 M50 40 V60 M30 60 V40 M70 60 V40 M50 60 V80 M30 80 V60 M70 80 V60 M50 80 V100 M30 100 V80 M70 100 V80" stroke-width="2" stroke="rgba(0, 0, 0, 0.05)" fill="none"/></svg>');
+            background-size: 150px;
+            opacity: 0.3;
+            z-index: 1;
+            animation: pan 60s linear infinite;
+        }
+        
+        @keyframes pan {
+            0% { background-position: 0 0; }
+            100% { background-position: 150px 150px; }
+        }
+
         /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(rgba(0, 59, 101, 0.7), rgba(0, 59, 101, 0.7)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1350&q=80') center center/cover no-repeat;
             height: 100vh;
-            color: var(--white);
+            color: var(--heading-color);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 60px; /* To offset fixed navbar */
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
+            max-width: 800px;
+            text-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+            line-height: 1.4;
+            margin-bottom: 1rem;
         }
 
         .hero p {
             font-size: 1.2rem;
-            font-weight: 300;
             max-width: 600px;
-            margin-bottom: 2rem;
+            color: var(--text-color);
         }
-
-        .hero .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: background 0.3s ease;
-        }
-
-        .hero .btn:hover {
-            background: var(--secondary-color);
+        
+        /* --- Content Sections --- */
+        .content-section {
+            background: var(--content-bg);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         /* --- About Section --- */
-        #about p {
-            font-size: 1.1rem;
+        #about .container {
             text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
             max-width: 800px;
             margin: 0 auto;
         }
+        
+        /* --- Timeline Section --- */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        /* --- Skills Section --- */
-        #skills {
-            background: var(--white);
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(var(--primary-color), #58a6ff);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container.left { left: 0; }
+        .timeline-container.right { left: 50%; }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--background-color);
+            border: 4px solid var(--primary-color);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .right::after { left: -10px; }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.7);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
+        .timeline-content h3 { font-size: 1.4rem; color: var(--heading-color); }
+        .timeline-content .company { font-weight: bold; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .timeline-content .date { font-size: 0.9rem; color: #6c757d; margin-bottom: 1rem; }
+        .timeline-content p { font-size: 0.95rem; }
+        
+        /* --- Education & Certs Section --- */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .education-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .education-item h3 { color: var(--primary-color); }
+        .education-item .institution { font-weight: bold; margin-top: 0.5rem; }
+        .education-item .date { font-size: 0.9rem; color: #6c757d; margin-top: 0.25rem; }
+
+
+        /* --- Skills Section --- */
+        #skills .intro {
+            text-align: center;
+            max-width: 700px;
+            margin: -2rem auto 3rem auto;
+            font-size: 1.1rem;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             text-align: center;
         }
         
         .skill-item {
-            background: var(--background-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .skill-item h3 {
-            margin-bottom: 1rem;
-        }
-
-        .skill-item ul {
-            list-style: none;
-        }
-
-        .skill-item li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Highlights/Projects Section --- */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .highlight-card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.7);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            border-bottom: 4px solid var(--primary-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         
-        .highlight-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        .skill-item:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .highlight-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .highlight-card .role {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .highlight-card p {
-            margin-bottom: 1rem;
-        }
-
-        /* --- Certifications & Education --- */
-         #education {
-            background: var(--white);
-        }
-        
-        .education-item {
-            background: var(--background-color);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 5px solid var(--secondary-color);
-        }
-        
-        .education-item h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        .education-item p {
-            margin: 0;
-            font-style: italic;
-        }
+        .skill-item h3 { margin-bottom: 1rem; }
+        .skill-item ul { list-style: none; }
+        .skill-item li { margin-bottom: 0.5rem; }
 
         /* --- Contact Section --- */
-        .contact-content {
-            text-align: center;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        .contact-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact-links a:hover {
-            color: var(--secondary-color);
-        }
+        .contact-content { text-align: center; max-width: 700px; margin: auto; }
+        .contact-content p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .contact-links a { color: var(--primary-color); text-decoration: none; font-weight: 700; font-size: 1.1rem; margin: 0 1rem; transition: color 0.3s ease, text-shadow 0.3s ease; }
+        .contact-links a:hover { color: var(--heading-color); }
 
         /* --- Footer --- */
         footer {
-            background: var(--secondary-color);
-            color: var(--white);
+            background: transparent;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 1rem;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        /* --- SVG Dividers --- */
+        .wave-divider {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+            z-index: 1;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: var(--content-bg);
         }
 
         /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .navbar .container {
-                flex-direction: column;
-            }
-            .navbar ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero {
-                height: auto;
-                padding: 8rem 0 4rem 0;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 1.8rem;
-            }
+        @media screen and (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .hero h1 { font-size: 2.5rem; }
+            
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-container.left, .timeline-container.right { left: 0%; }
+            .timeline-container::after, .right::after { left: 21px; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">Yash Sankhla</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#highlights">Highlights</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <canvas id="particle-canvas"></canvas>
 
+    <!-- Hero Section -->
     <header class="hero">
-        <h1>Yash Sankhla</h1>
-        <p>A disciplined and focused SAP HCM & SuccessFactors consultant simplifying complex HR systems with resilient, future-ready solutions.</p>
-        <a href="#highlights" class="btn">View My Experience</a>
+        <div class="container">
+            <h1>Yash Sankhla</h1>
+            <p>SAP HCM & SuccessFactors Consultant | Building Resilient Enterprise Solutions</p>
+        </div>
     </header>
 
     <main>
-        <section id="about">
+        <!-- About Section -->
+        <section id="about" class="content-section">
+            <div class="circuit-bg"></div>
             <div class="container">
                 <h2>About Me</h2>
-                <p>Hello, I'm Yash Sankhla, an SAP HCM and SuccessFactors consultant based in Jaipur with over four years of specialized experience. My passion lies in untangling complex systems and delivering robust, future-ready solutions that align technical innovation with timeless business principles. Throughout my career, I've honed my skills across SAP Human Capital Management (HCM), SuccessFactors Employee Central (EC), and various ERP systems. When I'm not architecting enterprise solutions, I enjoy the strategic thinking of a good game of chess or unwinding with a swim. I thrive on solving challenges. Let's connect and build something resilient together.</p>
+                <p class="about-text">
+                    I am a disciplined and focused consultant with over four years of specialized experience in SAP Human Capital Management (HCM) and SuccessFactors. My approach is rooted in simplifying complex systems and aligning technical innovation with core business principles. I strive to bring resilience and clarity to technical challenges, creating solutions that are not only effective but also robust and built to last.
+                </p>
+            </div>
+             <div class="wave-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
             </div>
         </section>
 
-        <section id="skills">
+        <!-- Timeline Section -->
+        <section id="timeline">
+            <div class="circuit-bg"></div>
             <div class="container">
-                <h2>Skills & Expertise</h2>
+                <h2>My Journey</h2>
+                <div class="timeline">
+                    <!-- Timeline items -->
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <h3>SAP Consultant</h3>
+                            <span class="company">Infystrat</span>
+                            <span class="date">Nov 2023 – Jul 2024</span>
+                            <p>Provided L1-L3 support for SAP HCM modules (PA, OM, Time, Payroll) for Johannesburg Water. Resolved incidents within strict SLAs and ensured HR master data accuracy.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <h3>IT Executive</h3>
+                            <span class="company">Mahatma Gandhi Hospital</span>
+                            <span class="date">Aug 2023 – Nov 2023</span>
+                            <p>Supported and maintained Microsoft Dynamics NAV and Hospital Information Management Systems (HIMS). Focused on system optimization, troubleshooting, and ensuring seamless healthcare operations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <h3>Software Engineer (Ericsson Project)</h3>
+                            <span class="company">HCLTech</span>
+                            <span class="date">Approx. 2021 – Jan 2023</span>
+                            <p>Led the decommissioning of legacy applications, transitioning functionalities to SuccessFactors. Managed Change Requests, incident resolution, and conducted end-user training for Employee Central.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <h3>Software Engineer (Dell SAP ECC Project)</h3>
+                            <span class="company">HCLTech</span>
+                            <span class="date">Jun 2019 – Approx. 2021</span>
+                            <p>Delivered project maintenance for the SAP ECC HCM landscape. Configured PA/OM modules, handled critical issue resolution in Time Management, and managed the full lifecycle of changes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wave-divider" style="transform: rotate(0deg);">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Education & Certifications Section -->
+        <section id="education" class="content-section">
+            <div class="circuit-bg"></div>
+            <div class="container">
+                <h2>Education & Certifications</h2>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <h3>Bachelor of Computer Applications (BCA)</h3>
+                        <p class="institution">Career Point University, Kota</p>
+                        <p class="date">Expected 2027</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>SAP Certified Application Associate</h3>
+                        <p class="institution">SAP SuccessFactors Employee Central</p>
+                    </div>
+                </div>
+            </div>
+            <div class="wave-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="circuit-bg"></div>
+            <div class="container">
+                <h2>Technical Expertise</h2>
+                <p class="intro">A focused overview of the technologies and methodologies I specialize in.</p>
                 <div class="skills-grid">
-                    <div class="skill-item">
+                     <div class="skill-item">
                         <h3>SAP Modules</h3>
                         <ul>
-                            <li>Human Capital Management (HCM)</li>
-                            <li>SuccessFactors Employee Central (EC)</li>
+                            <li>SuccessFactors Employee Central</li>
+                            <li>SAP Human Capital Management</li>
                             <li>Personnel Administration (PA)</li>
                             <li>Organizational Management (OM)</li>
                             <li>Time Management & Payroll</li>
                         </ul>
                     </div>
                     <div class="skill-item">
-                        <h3>ERP & HIMS</h3>
+                        <h3>ERP Systems</h3>
                         <ul>
                             <li>SAP ERP & SAP ECC</li>
                             <li>Microsoft Dynamics NAV</li>
-                            <li>Hospital Information Management</li>
+                            <li>Hospital Info Systems (HIMS)</li>
                         </ul>
                     </div>
                     <div class="skill-item">
-                        <h3>Core Competencies</h3>
+                        <h3>Core Methodologies</h3>
                         <ul>
-                            <li>L1, L2, & L3 Support</li>
+                            <li>L1-L3 Technical Support</li>
                             <li>Change & Incident Management</li>
                             <li>SLA Management</li>
                             <li>System Decommissioning</li>
                             <li>End-User Training</li>
                         </ul>
                     </div>
-                    <div class="skill-item">
-                        <h3>ITSM & Tools</h3>
-                        <ul>
-                            <li>ServiceNow</li>
-                            <li>SmartSMP</li>
-                            <li>GlobalProtect</li>
-                        </ul>
-                    </div>
                 </div>
+            </div>
+             <div class="wave-divider" style="transform: rotate(0deg);">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
             </div>
         </section>
 
-        <section id="highlights">
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+            <div class="circuit-bg"></div>
             <div class="container">
-                <h2>Career Highlights</h2>
-                <div class="highlights-grid">
-                    <div class="highlight-card">
-                        <h3>L1-L3 Support for Johannesburg Water</h3>
-                        <span class="role">SAP Consultant at Infystrat</span>
-                        <p>Provided comprehensive support for SAP HCM modules (PA, OM, Time, Payroll). Ensured minimal disruption to business operations by analyzing and resolving all incidents within strict SLA timelines, while also maintaining the integrity of HR master data.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h3>Legacy System Decommissioning for Ericsson</h3>
-                        <span class="role">Software Engineer at HCLTech</span>
-                        <p>Led the successful decommissioning of legacy applications and managed the seamless transition of their functionalities into modern SuccessFactors modules (Time Off, Org Chart). This involved handling prioritized incidents, managing SWAT teams, and overseeing monthly patches.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h3>SAP ECC Landscape Maintenance for Dell</h3>
-                        <span class="role">Software Engineer at HCLTech</span>
-                        <p>Maintained the SAP ECC HCM landscape by mapping business requirements, configuring PA/OM modules, and running data synchronization programs. I managed the full lifecycle of changes from creation and testing through to production deployment.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="education">
-             <div class="container">
-                <h2>Certifications & Education</h2>
-                <div class="education-item">
-                     <h3>SAP Certified Application Associate - SuccessFactors Employee Central</h3>
-                     <p>This certification validates my expertise in implementing and managing the SAP SuccessFactors Employee Central solution.</p>
-                </div>
-                 <div class="education-item">
-                     <h3>Bachelor of Computer Applications (BCA)</h3>
-                     <p>Career Point University, Kota (Expected 2027) — Continuing my education through a flexible program that accommodates my professional career, demonstrating a commitment to both practical experience and academic knowledge.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2>Let's Connect</h2>
+                <h2>Contact</h2>
                 <div class="contact-content">
-                    <p>I am always open to discussing new challenges, projects, or collaboration opportunities. If you are looking for a dedicated consultant with a deep understanding of SAP HCM and SuccessFactors, I would love to hear from you.</p>
+                    <p>I welcome the opportunity to connect and explore how my skills can bring value to your projects. Please feel free to reach out.</p>
                     <div class="contact-links">
-                        <a href="mailto:yashsankhla067@gmail.com">yashsankhla067@gmail.com</a>
-                        <a href="tel:+916377985266">+91-6377985266</a>
-                        <a href="https://www.linkedin.com/in/yash-sankhla-☁️-18b5671a5" target="_blank">LinkedIn Profile</a>
+                        <a href="mailto:yashsankhla067@gmail.com">Email</a>
+                        <a href="https://www.linkedin.com/in/yash-sankhla-%E2%98%81%EF%B8%8F-18b5671a5" target="_blank">LinkedIn</a>
+                        <a href="tel:+916377985266">Phone</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Yash Sankhla. All Rights Reserved.</p>
+            <p>&copy; 2025 Yash Sankhla | India</p>
         </div>
     </footer>
 
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: (canvas.height / 120) * (canvas.width / 120)
+        };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(0, 123, 255, 0.5)';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                        this.x += 3;
+                    }
+                    if (mouse.x > this.x && this.x > this.size * 10) {
+                        this.x -= 3;
+                    }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                        this.y += 3;
+                    }
+                    if (mouse.y > this.y && this.y > this.size * 10) {
+                        this.y -= 3;
+                    }
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                let color = 'rgba(0, 123, 255, 0.5)';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 8) * (canvas.height / 8)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(0, 123, 255, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+        
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            mouse.radius = ((canvas.height / 120) * (canvas.width / 120));
+            init();
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
+
