@@ -587,8 +587,8 @@
                 let size = (Math.random() * 2) + 1;
                 let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
                 let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 0.4) - 0.2;
-                let directionY = (Math.random() * 0.4) - 0.2;
+                let directionX = (Math.random() * 4) - 2;
+                let directionY = (Math.random() * 4) - 2;
                 let color = 'rgba(0, 123, 255, 0.5)';
                 particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
             }
@@ -639,7 +639,4 @@
     </script>
 </body>
 </html>
-
-
-
 
